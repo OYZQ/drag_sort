@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<!--css样式-->
+	<style>
+		body{
+		margin: 0px;
+	}
+    .out {
+        width: 100%;
+        height: 100%;
+    }
+    .coffeeOut{
+        width: 100%;
+        height: 100%;
+		position: absolute;
+    }
+
+    .titleButton{
+        margin-left: 5px;
+        width: 100px;
+        height: 25px;
+        background-color: #2aabd2;
+    }
+    .titleButton .one {
+        width: 50px;
+        height: 25px;
+        text-align: left;
+        float: left;
+        background-color: #2aabd2;
+    }
+    .titleButton .two {
+        width: 50px;
+        height: 25px;
+        text-align: left;
+        float: left;
+        background-color: #2aabd2;
+    }
+
+    /*轮播容器*/
+    .container {
+        width: 100%;
+        height: 100%;
+        /*前后页按钮添加属性*/
+        position: relative;
+        overflow: hidden;
+    }
+
+    .person {
+        margin: 0 9px;
+        width: 280px;
+        height: 318px;
+        border: 1px solid deeppink;
+        float: left;
+        overflow: hidden;
+    }
+    .person:hover {
+        background-color: lawngreen;
+    }
+    .person:hover .title {
+        display: none;
+    }
+    .person:hover .detail {
+        display: initial;
+    }
+
+    .label {
+        margin-top: 20px;
+        margin-left: 0;
+        width: 160px;
+        height: 24px;
+        border: 1px solid blue;
+        text-align: left;
+        font-size: 18px;
+        /*设置半圆形边框*/
+        border-bottom-right-radius:12px;
+        border-top-right-radius:12px;
+        background-color: #2aabd2;
+    }
+    .exp {
+        margin-top: 38px;
+        text-align:center;
+    }
+    .first .img, .second .img, .third .img, .fourth .img, .fifth .img, .sixth .img{
+        background-image: url("../img/icon_1.jpg");
+        margin: 0 auto;
+        width: 100px;
+        height: 100px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+        border: 1px solid gray;
+    }
+    .first .name , .second .name, .third .name, .fourth .name, .fifth .name, .sixth .name {
+        margin: 10px auto;
+        font-size: 24px;
+        font-weight:bold;
+    }
+    .first .title , .second .title, .third .title, .fourth .title, .fifth .title, .sixth .title{
+        margin: 10px auto;
+        width: 70%;
+        font-size: 24px;
+        font-weight:bold;
+    }
+    .first .detail , .second .detail, .third .detail, .fourth .detail, .fifth .detail, .sixth .detail {
+        margin: 10px auto;
+        width: 75%;
+        font-size: 18px;
+        /*超出部分显示省略号*/
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        display: none;
+    }
+
+    .buttons {
+        width: 100%;
+        height: 20px;
+		position: absolute;
+		text-align: center;
+		bottom: 20px;
+    }
+    .slider-nav li {
+        width: 15px;
+        height: 15px;
+        border-radius: 10px;
+        background: #3e3e3e;
+        cursor: pointer;
+        margin: 0 5px;
+        overflow: hidden;
+        text-align: center;
+        display: inline-block;
+    }
+    .slider-nav li:hover {
+        background: #31b0d5;
+    }
+    .list {
+        width: 301vw;
+        height: 100%;
+        position: absolute;
+    }
+
+    .arrow {
+        position: absolute;
+        display: none;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        z-index: 2;
+        font-size: 36px;
+        text-align: center;
+        font-weight: bold;
+        top: 140px;
+        background-color: rgba(0, 0, 0, .3);
+        color: #FFF;
+    }
+    #prev {
+        left: 20px;
+    }
+    #next {
+        right: 20px;
+    }
+    #container:hover .arrow {
+        display: block;
+    }
+    .arrow:hover {
+        background-color: rgba(0, 0, 0, .7);
+    }
+    .buttons .on {
+        background: orange;
+    }
+	
+	.slider-nav {
+        list-style: none;
+        font-size: 0;
+		margin: 0px;
+        padding: 0px;
+		width: 1500px;
+		display: inline;
+    }
+    .ele {
+        font-size: 16px;
+        width: 85px;
+        height: 80px;
+        border: 1px solid #999;
+        background: #EA6E59;
+        border-radius: 10px;
+        color: white;
+        display: inline-block;
+		margin: 50px 80px;
+		box-sizing:border-box;
+		-moz-box-sizing:border-box; /* Firefox */
+		-webkit-box-sizing:border-box; /* Safari */
+    }
+	.pageDiv{
+		display: inline-block;
+		width: 100vw;
+		vertical-align: top;
+	}
+	.contentDiv{
+		width: 300vw;
+		height: 100%;
+        position: relative;
+        overflow: hidden;
+	}
+	ul{
+		padding: 0;
+		margin: 0;
+	}
+</style>
+	<head>
+		<meta charset="UTF-8">
+		<title>myBanner</title>
+	</head>
+	<body>
+		<button style="position: absolute;z-index: 9999;" onclick="add()">add</button>
+		<div class="out">
+			<div class="coffeeOut">
+				<!--大神推荐-->
+				<div class="container">
+					<div class="list" style="left:0px">
+						<div class="pageDiv">
+							<ul id="container1" class="container1">
+								<li class="ele" draggable="true">1</li>
+								<li class="ele" draggable="true">2</li>
+								<li class="ele" draggable="true">3</li>
+								<li class="ele" draggable="true">4</li>
+								<li class="ele" draggable="true">5</li>
+								<li class="ele" draggable="true">6</li>
+								<li class="ele" draggable="true">7</li>
+								<li class="ele" draggable="true">8</li>
+								<li class="ele" draggable="true">9</li>
+								<li class="ele" draggable="true">10</li>
+								<li class="ele" draggable="true">11</li>
+								<li class="ele" draggable="true">12</li>
+								<li class="ele" draggable="true">13</li>
+								<li class="ele" draggable="true">14</li>
+								<li class="ele" draggable="true">15</li>
+								<li class="ele" draggable="true">16</li>
+								<li class="ele" draggable="true">17</li>
+								<li class="ele" draggable="true">18</li>
+								<li class="ele" draggable="true">19</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="buttons">
+				<ul class="slider-nav">
+					<li class="on" index="1"></li>
+				</ul>
+			</div>
+
+		</div>
+		</div>
+	</body>
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+	<script>
+		class dragSort {
+			constructor(id) {
+				var draging = null;
+				var that = this;
+				this.dom = document.querySelector("#" + id);
+				this.dom.ondragstart = function(event) {
+					console.log("start:")
+					// dataTransfer.setData把拖动对象的数据存入其中，可以用dataTransfer.getData来获取数据
+					event.dataTransfer.setData("te", event.target.innerText)
+					draging = event.target
+				}
+				this.dom.ondragover = function(event) {
+					console.log("over:")
+					// 默认地，无法将数据/元素放置到其他元素中。如果需要设置允许放置，必须阻止对元素的默认处理方式
+					event.preventDefault()
+					var target = event.target
+					if (target.nodeName === "LI" && target !== draging) {
+						// 获取初始位置
+						var targetRect = target.getBoundingClientRect()
+						var dragingRect = draging.getBoundingClientRect()
+						if (target) {
+							// 判断是否动画元素
+							if (target.animated) {
+								return;
+							}
+						}
+						if (that._index(draging) < that._index(target)) {
+							// 目标比元素大，插到其后面
+							// extSibling下一个兄弟元素
+							target.parentNode.insertBefore(draging, target.nextSibling)
+						} else {
+							// 目标比元素小，插到其前面
+							target.parentNode.insertBefore(draging, target)
+						}
+						that._animate(dragingRect, draging)
+						that._animate(targetRect, target)
+					}
+				}
+			}
+
+
+			// 获取元素在父元素中的index
+			_index(el) {
+				var index = 0
+				if (!el || !el.parentNode) {
+					return -1
+				}
+				// previousElementSibling：上一个兄弟元素
+				while (el && (el = el.previousElementSibling)) {
+					index++
+				}
+				return index
+			}
+			// 触发动画
+			_animate(prevRect, target) {
+				debugger
+				var ms = 300
+				var that = this;
+				if (ms) {
+					var currentRect = target.getBoundingClientRect()
+					if (prevRect.nodeType === 1) {
+						prevRect = prevRect.getBoundingClientRect()
+					}
+					this._css(target, 'transition', 'none')
+					this._css(target, 'transform', 'translate3d(' +
+						(prevRect.left - currentRect.left) + 'px,' +
+						(prevRect.top - currentRect.top) + 'px,0)'
+					);
+
+					target.offsetWidth; // 触发重绘
+
+					this._css(target, 'transition', 'all ' + ms + 'ms');
+					this._css(target, 'transform', 'translate3d(0,0,0)');
+					// 事件到了之后把transition和transform清空
+					clearTimeout(target.animated);
+
+					target.animated = setTimeout(function() {
+						that._css(target, 'transition', '');
+						that._css(target, 'transform', '');
+						target.animated = false;
+					}, ms);
+				}
+			}
+			// 给元素添加style
+			_css(el, prop, val) {
+				var style = el && el.style
+				if (style) {
+					if (val === void 0) {
+						if (document.defaultView && document.defaultView.getComputedStyle) {
+							val = document.defaultView.getComputedStyle(el, '')
+						} else if (el.currentStyle) {
+							val = el.currentStyle
+						}
+						return prop === void 0 ? val : val[prop]
+					} else {
+						if (!(prop in style)) {
+							prop = '-webkit-' + prop;
+						}
+						style[prop] = val + (typeof val === 'string' ? '' : 'px')
+					}
+				}
+			}
+		}
+	</script>
+	<script type="text/javascript">
+		init()
+		var demo = new dragSort('container1');
+
+		function add() {
+			var num = $('li').length + 1
+			var str = '<li class="ele" draggable="true">' + num + '</li>'
+			var width = document.documentElement.clientWidth
+			var height = document.documentElement.clientHeight
+			var numW = Math.floor(width / (85 + 80 * 2))
+			var numH = Math.floor(height / (80 + 50 * 2))
+			var sum = numW * numH
+			for (var i = 0; i < $('.pageDiv').length; i++) {
+				var length = $('.list ul').eq(i).find('li').length;
+				if (length < sum) {
+					$('.list ul').eq(i).append(str);
+					return;
+				}
+
+				if (i == $('.pageDiv').length - 1) {
+					var str2 = '<div class="pageDiv"><ul id="container'+Number(i+2)+'" class="container1"></ul></div>'
+					$('.list').append(str2);
+					$('.list ul').eq(i).append(str);
+					$('.slider-nav').append('<li class="" index="' + Number($('.slider-nav li').length + 1) + '"></li>');
+					init()
+					new dragSort('container'+Number(i+2));
+				}
+			}
+		}
+
+		function init() {
+			var container = document.getElementsByClassName('container').item(0);
+			var list = document.getElementsByClassName('list').item(0);
+			var buttons = document.getElementsByClassName('buttons').item(0).getElementsByTagName('li');
+			var index = 1;
+			var animated = false;
+			var timer;
+
+			function showBtn() {
+				for (var i = 0; i < buttons.length; i++) {
+					if (buttons[i].className == 'on') {
+						buttons[i].className = '';
+					}
+				}
+				buttons[index - 1].className = 'on';
+			}
+
+			function animate(offset) {
+				animated = true;
+				var newL = parseInt(list.style.left) + offset;
+				var time = 600;
+				var interval = 10;
+				var speed = offset / (time / interval);
+
+				list.style.left = parseInt(list.style.left) + speed + 'px';
+				setTimeout(go, interval);
+
+				function go() {
+					if ((speed < 0 && parseInt(list.style.left) > newL) || (speed > 0 && parseInt(list.style.left) < newL)) {
+						list.style.left = parseInt(list.style.left) + speed + 'px';
+						setTimeout(go, interval);
+					} else {
+						animated = false;
+						list.style.left = newL + 'px';
+					}
+				}
+
+				go();
+			}
+
+			for (var i = 0; i < buttons.length; i++) {
+				buttons[i].onclick = function() {
+					var myindex = parseInt(this.getAttribute('index'));
+					var offset = -document.getElementsByClassName("pageDiv")[0].clientWidth * (myindex - index);
+					if (animated == false) {
+						animate(offset);
+					}
+					index = myindex;
+					showBtn();
+				}
+			}
+		}
+	</script>
+</html>
